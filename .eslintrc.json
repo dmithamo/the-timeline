@@ -17,5 +17,12 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
+<<<<<<< HEAD
   "rules": {}
+=======
+  "rules": {
+    "react/forbid-prop-types": [0],
+    "react/jsx-props-no-spreading": [0]
+  }
+>>>>>>> feature/theme-with-context-api
 }

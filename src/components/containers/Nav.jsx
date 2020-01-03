@@ -22,21 +22,27 @@ const Container = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-  font-size: 1.2em;
   font-weight: 700;
+  font-size: 1.4em;
 
   position: absolute;
   top: 0;
   z-index: 1000;
 
   a {
-    color: #00000075;
     text-decoration: none;
   }
 
   a.active-link,
   a:hover {
     text-decoration: underline;
-    color: #000;
   }
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
 `;

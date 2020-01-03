@@ -1,6 +1,11 @@
 import React from 'react';
 import Routes from './components/containers/Routes';
+import ThemeContextProvider from './contexts/theme';
 
 export default function App() {
-  return <Routes />;
+  return (
+    <ThemeContextProvider>
+      <Routes />
+    </ThemeContextProvider>
+  );
 }
