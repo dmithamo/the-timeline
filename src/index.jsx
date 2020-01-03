@@ -7,8 +7,18 @@ import {
   faHome,
   faToggleOff,
   faToggleOn,
+  faSignOutAlt,
+  faUserAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import App from './App';
 
-library.add(faBars, faTimes, faHome, faToggleOff, faToggleOn);
+library.add(
+  faBars,
+  faTimes,
+  faHome,
+  faToggleOff,
+  faToggleOn,
+  faSignOutAlt,
+  faUserAlt,
+);
 ReactDOM.render(<App />, document.getElementById('root'));

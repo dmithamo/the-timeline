@@ -19,12 +19,19 @@ export default function Layout({ children }) {
 }
 
 const MainContainer = styled.section`
-  color: ${(props) => (props.darkModeActive ? '#fff' : '#000')};
-  background-color: ${(props) => (props.darkModeActive ? '#000' : '#fff')};
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: ${(props) => (props.darkModeActive ? '#e3e3e3' : '#121212')};
+  background-color: ${(props) =>
+    props.darkModeActive ? '#112222' : '#ffffff40'};
 
   a,
   button {
-    color: ${(props) => (props.darkModeActive ? '#fff' : '#000')};
+    color: ${(props) => (props.darkModeActive ? '#c77905' : '#121212')};
     filter: opacity(0.9);
 
     :hover {
@@ -33,7 +40,7 @@ const MainContainer = styled.section`
     }
   }
 
-  transition: all ease 0.7s;
+  transition: all ease 0.3s;
 `;
 
 Layout.propTypes = {

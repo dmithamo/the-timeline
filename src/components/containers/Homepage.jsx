@@ -1,38 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Logo from '../common/Logo';
 import Subtitle from '../common/Subtitle';
 import { useThemeContext } from '../../contexts/theme';
+import { useAuthContext } from '../../contexts/auth';
 
 export default function Homepage() {
   const themeContext = useThemeContext();
   const {
     themeState: { darkModeActive },
   } = themeContext;
-  return (
-    <Container>
+
+  const authContext = useAuthContext();
+  const {
+    authState: { isAuthenticated },
+  } = authContext;
+
+  return isAuthenticated ? (
+    <Redirect to="/the-timeline" />
+  ) : (
+    <>
       <Logo />
       <Subtitle />
       <AuthButtons darkModeActive={darkModeActive}>
-        <NavLink to="/" activeClassName="active-link">
-          Sign in
+        <NavLink to="/the-freaking-docs" activeClassName="active-link">
+          Find out more
         </NavLink>
-        <NavLink id="create-account" to="/" activeClassName="active-link">
-          Create an account
+        <NavLink
+          id="authenticate"
+          to="/authenticate"
+          activeClassName="active-link"
+        >
+          Get started. It&apos;s free
         </NavLink>
       </AuthButtons>
-    </Container>
+    </>
   );
 }
-
-const Container = styled.section`
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const AuthButtons = styled.div`
   display: flex;
@@ -41,11 +46,12 @@ const AuthButtons = styled.div`
   margin-top: 5em;
 
   a {
+    font-size: 1.2em;
     font-weight: 700;
     padding: 1.2em;
   }
 
-  a#create-account {
+  a#authenticate {
     text-decoration: none;
     background-color: ${(props) => (props.darkModeActive ? '#fff' : '#000')};
     color: ${(props) => (props.darkModeActive ? '#000' : '#fff')};
