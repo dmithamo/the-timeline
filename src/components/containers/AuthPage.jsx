@@ -16,6 +16,10 @@ export default function AuthPage() {
     error,
   } = authState;
 
+  function handleInvalidInput(err) {
+    authContext.onAuthError({ status: 400, message: err });
+  }
+
   async function onEmailSubmit(params) {
     await authContext.onAuthRequest();
 
@@ -46,7 +50,7 @@ export default function AuthPage() {
 
     authContext.onAuthError({
       status: 400,
-      message: 'Invalid verification code',
+      message: `'${code}' is not a valid verification code.`,
     });
   }
 
@@ -61,6 +65,7 @@ export default function AuthPage() {
       {email ? (
         <VerificationCodeForm
           onSubmit={onVerificationCodeSubmit}
+          onInvalidInput={handleInvalidInput}
           onFormReset={onFormReset}
           isFetching={isFetching}
           error={error}
@@ -68,6 +73,7 @@ export default function AuthPage() {
       ) : (
         <EmailVerificationForm
           onSubmit={onEmailSubmit}
+          onInvalidInput={handleInvalidInput}
           isFetching={isFetching}
           error={error}
         />

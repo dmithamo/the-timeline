@@ -9,15 +9,30 @@ import Loader from '../Loader';
 
 export default function VerificationCodeForm(props) {
   const [value, setValue] = React.useState('');
+  const { onSubmit, onInvalidInput } = props;
 
   function handleInputChange(e) {
     setValue(e.target.value);
   }
 
+  function handleInvalidInput() {
+    onInvalidInput(`'${value}' is not a valid verification code.`);
+  }
+
   function handleFormSubmit(e) {
     e.preventDefault();
-    const { onSubmit } = props;
-    isValidStringInput(value) && onSubmit(value);
+    isValidStringInput(value) ? onSubmit(value) : handleInvalidInput();
+  }
+
+  // Auto-submit when maxLength is attained
+  if (value.length === 6) {
+    isValidStringInput(value) ? onSubmit(value) : handleInvalidInput();
+
+    /* Clear form.
+     * This is very very important. At least it is if
+     * you agree infinite loops shouldn't exist
+     */
+    setValue('');
   }
 
   const themeContext = useThemeContext();
@@ -44,6 +59,7 @@ export default function VerificationCodeForm(props) {
             required
             type="text"
             placeholder="000000"
+            maxLength="6"
             value={value}
             onChange={(e) => handleInputChange(e)}
           />
@@ -62,6 +78,7 @@ export default function VerificationCodeForm(props) {
 
 VerificationCodeForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  onInvalidInput: PropTypes.func.isRequired,
   onFormReset: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   error: PropTypes.any.isRequired,
