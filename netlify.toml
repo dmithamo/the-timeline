@@ -1,6 +1,6 @@
 [build]
-  base = "the-timeline/"
-  publish = "the-timeline/build/"
+  base = ""
+  publish = "build/"
   command = "yarn build"
 
   [build.environment]
