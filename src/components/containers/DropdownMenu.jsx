@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useThemeContext } from '../../contexts/theme';
+import { useAuthContext } from '../../contexts/auth';
+import DropDownMenuButton from '../common/DropDownMenuButton';
+import User from './User';
 
 export default function DropdownMenu() {
   const themeContext = useThemeContext();
@@ -9,18 +11,36 @@ export default function DropdownMenu() {
     themeState: { darkModeActive },
   } = themeContext;
 
+  const authContext = useAuthContext();
+  const {
+    authState: { isAuthenticated, user },
+  } = authContext;
+
   function toggleDarkMode() {
     themeContext.onDarkModeToggle();
   }
 
+  function logout() {
+    authContext.onLogoutUser();
+  }
+
   return (
     <Container darkModeActive={darkModeActive}>
-      <button type="button" onClick={toggleDarkMode}>
-        <span>Dark Mode</span>
-        <span className="icon">
-          <FontAwesomeIcon icon={darkModeActive ? 'toggle-on' : 'toggle-off'} />
-        </span>
-      </button>
+      <DropDownMenuButton
+        onClick={toggleDarkMode}
+        text="Dark Mode"
+        icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
+      />
+
+      {isAuthenticated && (
+        <DropDownMenuButton
+          onClick={logout}
+          text="Logout"
+          icon="sign-out-alt"
+        />
+      )}
+
+      {isAuthenticated && <User user={user} />}
     </Container>
   );
 }
@@ -28,6 +48,7 @@ export default function DropdownMenu() {
 const Container = styled.div`
   width: 250px;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
   border-radius: 5px;
@@ -36,9 +57,10 @@ const Container = styled.div`
   top: 5vh;
   right: 2%;
 
-  background-color: ${(props) => (props.darkModeActive ? '#fff' : '#121212')};
+  background-color: ${(props) =>
+    props.darkModeActive ? '#e3e3e3' : '#112222'};
   * {
-    color: ${(props) => (props.darkModeActive ? '#000' : '#fff')};
+    color: ${(props) => (props.darkModeActive ? '#121212' : '#c77905')};
   }
 
   button {
