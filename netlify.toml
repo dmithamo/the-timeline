@@ -1,0 +1,26 @@
+[build]
+  base = "the-timeline/"
+  publish = "the-timeline/build/"
+  command = "yarn build"
+
+  [build.environment]
+    REACT_APP_SECRET_KEY = "it's a secret key 33"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Content-Security-Policy = "frame-ancestors https://www.facebook.com"
+
+	cache-control = '''
+	max-age=0,
+	no-cache,
+	no-store,
+	must-revalidate'''
