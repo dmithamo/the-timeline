@@ -9,15 +9,21 @@ import Loader from '../Loader';
 
 export default function EmailVerificationForm(props) {
   const [value, setValue] = React.useState('');
+  const { onSubmit, onInvalidInput } = props;
 
   function handleInputChange(e) {
     setValue(e.target.value);
   }
 
+  function handleInvalidInput() {
+    onInvalidInput(`'${value}' is not a valid email address.`);
+  }
+
   function handleFormSubmit(e) {
     e.preventDefault();
-    const { onSubmit } = props;
-    isValidEmailInput(value) && onSubmit({ email: value });
+    isValidEmailInput(value)
+      ? onSubmit({ email: value })
+      : handleInvalidInput();
   }
 
   const themeContext = useThemeContext();
@@ -60,5 +66,6 @@ export default function EmailVerificationForm(props) {
 EmailVerificationForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  onInvalidInput: PropTypes.func.isRequired,
   error: PropTypes.any.isRequired,
 };

@@ -5,7 +5,7 @@ export function isValidEmailInput(input) {
 }
 
 export function isValidStringInput(input) {
-  const validNumberStringRegex = /[0-9a-zA-Z]/;
+  const validNumberStringRegex = /[0-9]/;
 
   return validNumberStringRegex.test(input);
 }

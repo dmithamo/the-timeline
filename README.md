@@ -4,4 +4,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[View live site](https://the-timeline.netlify.com/)
+`Proper documentation for this app is in the works`
+
+The site is live @ [netlify:dmithamo/the-timeline](https://the-timeline.netlify.com/)
