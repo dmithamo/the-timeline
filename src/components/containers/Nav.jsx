@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DropdownMenu from './DropdownMenu';
 
 export default function Nav() {
-  const [showDropdownMenu, setShowDropdownMenu] = useState(false);
-
   return (
     <Container>
       <NavLink to="/" activeClassName="active-link">
         <FontAwesomeIcon icon="home" />
       </NavLink>
-      <StyledButton onClick={() => setShowDropdownMenu(!showDropdownMenu)}>
-        <FontAwesomeIcon icon={showDropdownMenu ? 'times' : 'bars'} />
-      </StyledButton>
-      {showDropdownMenu && <DropdownMenu />}
+
+      <DropdownMenu />
     </Container>
   );
 }
@@ -38,12 +34,4 @@ const Container = styled.nav`
   a:hover {
     text-decoration: underline;
   }
-`;
-
-const StyledButton = styled.button`
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-  font: inherit;
 `;

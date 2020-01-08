@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useThemeContext } from '../../contexts/theme';
 import { useAuthContext } from '../../contexts/auth';
 import DropDownMenuButton from '../common/DropDownMenuButton';
@@ -20,28 +21,61 @@ export default function DropdownMenu() {
     themeContext.onDarkModeToggle();
   }
 
+  const [showDropdown, setShowDropdown] = useState(false);
+  function toggleDropdown() {
+    setShowDropdown(!showDropdown);
+  }
+
+  // Hide dropdown when esc key is pressed
+  // or when click happens outside dropdown
+  (() => {
+    document.addEventListener('keyup', (e) => {
+      if (e.keyCode === 27 || e.which === 27) {
+        showDropdown && toggleDropdown();
+      }
+    });
+
+    // document.addEventListener('click', (e) => {
+    //   if (
+    //     e.target.id !== 'dropdown-toggle' ||
+    //     e.target.id !== 'dropdown-menu'
+    //   ) {
+    //     showDropdown && setShowDropdown(false);
+    //   }
+    // });
+    // TODO: Fix this!
+  })();
+
   function logout() {
     authContext.onLogoutUser();
   }
 
   return (
-    <Container darkModeActive={darkModeActive}>
-      <DropDownMenuButton
-        onClick={toggleDarkMode}
-        text="Dark Mode"
-        icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
-      />
+    <>
+      <StyledButton id="dropdown-toggle" onClick={toggleDropdown}>
+        <FontAwesomeIcon icon={showDropdown ? 'times' : 'bars'} />
+      </StyledButton>
 
-      {isAuthenticated && (
-        <DropDownMenuButton
-          onClick={logout}
-          text="Logout"
-          icon="sign-out-alt"
-        />
+      {showDropdown && (
+        <Container id="dropdown-menu" darkModeActive={darkModeActive}>
+          <DropDownMenuButton
+            onClick={toggleDarkMode}
+            text="Dark Mode"
+            icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
+          />
+
+          {isAuthenticated && (
+            <DropDownMenuButton
+              onClick={logout}
+              text="Logout"
+              icon="sign-out-alt"
+            />
+          )}
+
+          {isAuthenticated && <User user={user} />}
+        </Container>
       )}
-
-      {isAuthenticated && <User user={user} />}
-    </Container>
+    </>
   );
 }
 
@@ -87,4 +121,12 @@ const Container = styled.div`
   }
 
   transition: all ease 0.7s;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
 `;
