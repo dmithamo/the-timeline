@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { NavLink, Redirect } from 'react-router-dom';
 import Logo from '../common/Logo';

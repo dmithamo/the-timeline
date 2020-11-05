@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useThemeContext } from '../../../contexts/theme';
@@ -8,7 +8,7 @@ import InlineError from '../../containers/InlineError';
 import Loader from '../Loader';
 
 export default function VerificationCodeForm(props) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = useState('');
   const { onSubmit, onInvalidInput } = props;
 
   function handleInputChange(e) {

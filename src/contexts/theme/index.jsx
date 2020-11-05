@@ -1,9 +1,9 @@
-import React from 'react'
+import { createContext, useContext, useReducer, useEffect, useMemo } from 'react';
 import toggleDarkModeAction from './actions'
 import themeReducer, { initialThemeState } from './reducer'
 
-const ThemeContext = React.createContext(initialThemeState)
-export const useThemeContext = () => React.useContext(ThemeContext)
+const ThemeContext = createContext(initialThemeState)
+export const useThemeContext = () => useContext(ThemeContext)
 
 /**
  * @description Create a wrapper to avail theme state to all children
@@ -11,13 +11,13 @@ export const useThemeContext = () => React.useContext(ThemeContext)
  */
 export default function ThemeContextProvider(props) {
   const cachedThemeState = JSON.parse(localStorage.getItem('theme'))
-  const [themeState, dispatch] = React.useReducer(
+  const [themeState, dispatch] = useReducer(
     themeReducer,
     cachedThemeState || initialThemeState,
   )
 
   /* Cache state in local storage to reapply on (manual) page refresh */
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('theme', JSON.stringify(themeState))
   }, [themeState])
 
@@ -28,7 +28,7 @@ export default function ThemeContextProvider(props) {
     dispatch(toggleDarkModeAction())
   }
 
-  const value = React.useMemo(() => ({ themeState, onDarkModeToggle }), [
+  const value = useMemo(() => ({ themeState, onDarkModeToggle }), [
     themeState,
   ])
 

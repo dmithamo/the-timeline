@@ -1,4 +1,4 @@
-import React from 'react'
+import { createContext, useReducer, useEffect, useMemo, useContext } from 'react';
 import {
   authenticateUserEmail,
   authenticateUserPin,
@@ -10,7 +10,7 @@ import {
 import { decrypt, encrypt } from './encryptor'
 import authReducer, { initialAuthState } from './reducer'
 
-const AuthContext = React.createContext(initialAuthState)
+const AuthContext = createContext(initialAuthState)
 
 /**
  * @description Handle auth using the context api
@@ -19,12 +19,12 @@ const AuthContext = React.createContext(initialAuthState)
 export default function AuthContextProvider(props) {
   const cachedAuthState = decrypt(sessionStorage.getItem('auth'))
 
-  const [authState, dispatch] = React.useReducer(
+  const [authState, dispatch] = useReducer(
     authReducer,
     cachedAuthState || initialAuthState,
   )
 
-  React.useEffect(() => {
+  useEffect(() => {
     sessionStorage.setItem('auth', encrypt(authState))
   }, [authState])
 
@@ -75,7 +75,7 @@ export default function AuthContextProvider(props) {
     dispatch(resetForm())
   }
 
-  const value = React.useMemo(
+  const value = useMemo(
     () => ({
       authState,
       onAuthRequest,
@@ -90,4 +90,4 @@ export default function AuthContextProvider(props) {
   return <AuthContext.Provider value={value} {...props} />
 }
 
-export const useAuthContext = () => React.useContext(AuthContext)
+export const useAuthContext = () => useContext(AuthContext)

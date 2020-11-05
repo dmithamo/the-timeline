@@ -1,4 +1,3 @@
-import React from 'react'
 import Routes from './components/containers/Routes'
 import AuthContextProvider from './contexts/auth'
 import ThemeContextProvider from './contexts/theme'
