@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from 'react'
+import styled from 'styled-components'
 
 export default function Subtitle() {
-  return <StyledText>Own your growth.</StyledText>;
+  return <StyledText>Own your growth.</StyledText>
 }
 
 const StyledText = styled.p`
@@ -10,4 +10,4 @@ const StyledText = styled.p`
   font-size: 1.2em;
   font-weight: 700;
   margin: 0;
-`;
+`

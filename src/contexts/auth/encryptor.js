@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 
-require('dotenv').config();
+require('dotenv').config()
 
-const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
+const SECRET_KEY = process.env.REACT_APP_SECRET_KEY
 
 /**
  * @description Obfuscate data for safe storage in sessionStorage
@@ -12,11 +12,11 @@ const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
 export function encrypt(data) {
   try {
     /* The following line is necessary to prevent a certain jwt err */
-    data.exp && delete data.exp;
+    data.exp && delete data.exp
 
-    return jwt.sign(data, SECRET_KEY, { expiresIn: '1h' });
+    return jwt.sign(data, SECRET_KEY, { expiresIn: '1h' })
   } catch (error) {
-    console.log('err when encrypting', error.message);
+    console.log('err when encrypting', error.message)
   }
 }
 
@@ -26,8 +26,8 @@ export function encrypt(data) {
  */
 export function decrypt(token) {
   try {
-    return jwt.verify(token, SECRET_KEY);
+    return jwt.verify(token, SECRET_KEY)
   } catch (error) {
-    console.log('err when decrypting', error.message);
+    console.log('err when decrypting', error.message)
   }
 }

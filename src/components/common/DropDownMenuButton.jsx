@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 
 export default function DropdownMenuButton(props) {
-  const { onClick, text, icon } = props;
+  const { onClick, text, icon } = props
 
   return (
     <Container type="button" onClick={onClick}>
@@ -13,7 +13,7 @@ export default function DropdownMenuButton(props) {
         <FontAwesomeIcon icon={icon} />
       </span>
     </Container>
-  );
+  )
 }
 
 const Container = styled.button`
@@ -37,10 +37,10 @@ const Container = styled.button`
     filter: opacity(1);
     font-weight: 700;
   }
-`;
+`
 
 DropdownMenuButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-};
+}

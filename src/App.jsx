@@ -1,7 +1,7 @@
-import React from 'react';
-import Routes from './components/containers/Routes';
-import ThemeContextProvider from './contexts/theme';
-import AuthContextProvider from './contexts/auth';
+import React from 'react'
+import Routes from './components/containers/Routes'
+import AuthContextProvider from './contexts/auth'
+import ThemeContextProvider from './contexts/theme'
 
 export default function App() {
   return (
@@ -10,7 +10,7 @@ export default function App() {
         <Routes />
       </ThemeContextProvider>
     </AuthContextProvider>
-  );
+  )
 }
 
 // TODO: re-imagine light mode. The current colors suck

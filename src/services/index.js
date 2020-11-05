@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axios from 'axios'
 
-require('dotenv').config();
+require('dotenv').config()
 
 const config = {
   BASE_URL: process.env.REACT_APP_API_URL,
-};
-const api = axios.create(config);
+}
+const api = axios.create(config)
 
 const RestClient = {
   // Temporarily intercept login request
   post: (path, params) =>
     path === '/auth' ? loginUserDummy(params) : api.post(path, params),
-};
+}
 
 function loginUserDummy(params) {
   const okRes = {
@@ -24,7 +24,7 @@ function loginUserDummy(params) {
         lastname: 'Bundi',
       },
     },
-  };
+  }
   // const notOkRes = {
   //   response: { status: 401, message: 'Wrong email or password' },
   // };
@@ -33,7 +33,7 @@ function loginUserDummy(params) {
   //   ? okRes
   //   : notOkRes;
 
-  return okRes;
+  return okRes
 }
 
-export default RestClient;
+export default RestClient
