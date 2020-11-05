@@ -7,26 +7,26 @@ import InlineError from '../../containers/InlineError'
 import Loader from '../Loader'
 import AuthFormContainer from './AuthFormContainer'
 
-export default function EmailVerificationForm(props) {
+export default function EmailVerificationForm (props) {
   const [value, setValue] = useState('')
   const { onSubmit, onInvalidInput } = props
 
-  function handleInputChange(e) {
+  function handleInputChange (e) {
     setValue(e.target.value)
   }
 
-  function handleInvalidInput() {
+  function handleInvalidInput () {
     onInvalidInput(`'${value}' is not a valid email address.`)
   }
 
-  function handleFormSubmit(e) {
+  function handleFormSubmit (e) {
     e.preventDefault()
     isValidEmailInput(value) ? onSubmit({ email: value }) : handleInvalidInput()
   }
 
   const themeContext = useThemeContext()
   const {
-    themeState: { darkModeActive },
+    themeState: { darkModeActive }
   } = themeContext
 
   const { isFetching, error } = props
@@ -65,5 +65,5 @@ EmailVerificationForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isFetching: PropTypes.bool.isRequired,
   onInvalidInput: PropTypes.func.isRequired,
-  error: PropTypes.any.isRequired,
+  error: PropTypes.any.isRequired
 }

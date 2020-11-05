@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:all": "standard --fix"
+    "lint:all": "eslint src/**/*.{js,jsx} --fix --cache"
   },
   "browserslist": {
     "production": [
@@ -40,6 +40,24 @@
     ]
   },
   "devDependencies": {
-    "standard": "^16.0.1"
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.21.5",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md}": [
+      "prettier --write",
+      "npm run lint:all"
+    ]
   }
 }
