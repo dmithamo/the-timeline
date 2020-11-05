@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default function Logo() {
+export default function Logo () {
   return <StyledText>Timeline&reg;</StyledText>
 }
 

@@ -5,42 +5,42 @@ export const LOGOUT = 'LOGOUT'
 export const AUTH_ERROR = 'AUTH_ERROR'
 export const RESET_FORM = 'RESET_FORM'
 
-export function makeAuthRequest() {
+export function makeAuthRequest () {
   return {
-    type: AUTH_REQUEST,
+    type: AUTH_REQUEST
   }
 }
 
 /* alias authenticateUserFactorOne */
-export function authenticateUserEmail(user) {
+export function authenticateUserEmail (user) {
   return {
     type: AUTHENTICATE_USER_EMAIL,
-    user,
+    user
   }
 }
 
 /* alias authenticateUserFactorTwo */
-export function authenticateUserPin() {
+export function authenticateUserPin () {
   return {
-    type: AUTHENTICATE_USER_PIN,
+    type: AUTHENTICATE_USER_PIN
   }
 }
 
-export function logoutUser() {
+export function logoutUser () {
   return {
-    type: LOGOUT,
+    type: LOGOUT
   }
 }
 
-export function reportAuthError(error) {
+export function reportAuthError (error) {
   return {
     type: AUTH_ERROR,
-    error,
+    error
   }
 }
 
-export function resetForm() {
+export function resetForm () {
   return {
-    type: RESET_FORM,
+    type: RESET_FORM
   }
 }

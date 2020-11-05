@@ -1,20 +1,20 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import Nav from './Nav';
-import { useThemeContext } from '../../contexts/theme';
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import Nav from './Nav'
+import { useThemeContext } from '../../contexts/theme'
 
-export default function Layout({ children }) {
-  const themeContext = useThemeContext();
+export default function Layout ({ children }) {
+  const themeContext = useThemeContext()
   const {
-    themeState: { darkModeActive },
-  } = themeContext;
+    themeState: { darkModeActive }
+  } = themeContext
 
   return (
     <MainContainer darkModeActive={darkModeActive}>
       <Nav />
       {children}
     </MainContainer>
-  );
+  )
 }
 
 const MainContainer = styled.section`
@@ -40,12 +40,12 @@ const MainContainer = styled.section`
   }
 
   transition: all ease 0.3s;
-`;
+`
 
 Layout.propTypes = {
-  children: PropTypes.any,
-};
+  children: PropTypes.any
+}
 
 Layout.defaultProps = {
-  children: null,
-};
+  children: null
+}

@@ -1,11 +1,11 @@
-import { createContext, useReducer, useEffect, useMemo, useContext } from 'react';
+import { createContext, useReducer, useEffect, useMemo, useContext } from 'react'
 import {
   authenticateUserEmail,
   authenticateUserPin,
   logoutUser,
   makeAuthRequest,
   reportAuthError,
-  resetForm,
+  resetForm
 } from './actions'
 import { decrypt, encrypt } from './encryptor'
 import authReducer, { initialAuthState } from './reducer'
@@ -16,12 +16,12 @@ const AuthContext = createContext(initialAuthState)
  * @description Handle auth using the context api
  * @param {object} props
  */
-export default function AuthContextProvider(props) {
+export default function AuthContextProvider (props) {
   const cachedAuthState = decrypt(sessionStorage.getItem('auth'))
 
   const [authState, dispatch] = useReducer(
     authReducer,
-    cachedAuthState || initialAuthState,
+    cachedAuthState || initialAuthState
   )
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default function AuthContextProvider(props) {
    * @description Mark that a request for login/registration is
    * in progress
    */
-  function onAuthRequest() {
+  function onAuthRequest () {
     dispatch(makeAuthRequest())
   }
 
@@ -41,7 +41,7 @@ export default function AuthContextProvider(props) {
    * pending pin verification
    * @param {object} user
    */
-  function onAuthenticateUserEmail(user) {
+  function onAuthenticateUserEmail (user) {
     dispatch(authenticateUserEmail(user))
   }
 
@@ -49,14 +49,14 @@ export default function AuthContextProvider(props) {
    * @description Complete authentication of user currently
    * in state
    */
-  function onAuthenticateUserPin() {
+  function onAuthenticateUserPin () {
     dispatch(authenticateUserPin())
   }
 
   /**
    * @description remove the currently authenticated user from state
    */
-  function onLogoutUser() {
+  function onLogoutUser () {
     dispatch(logoutUser())
   }
 
@@ -64,14 +64,14 @@ export default function AuthContextProvider(props) {
    * @description Indicate that an err arose during registration/login
    * @param {object} error
    */
-  function onAuthError(error) {
+  function onAuthError (error) {
     dispatch(reportAuthError(error))
   }
 
   /**
    * @description Reset form when user chooses to restart auth process
    */
-  function onResetForm() {
+  function onResetForm () {
     dispatch(resetForm())
   }
 
@@ -83,9 +83,9 @@ export default function AuthContextProvider(props) {
       onAuthenticateUserPin,
       onLogoutUser,
       onAuthError,
-      onResetForm,
+      onResetForm
     }),
-    [authState],
+    [authState]
   )
   return <AuthContext.Provider value={value} {...props} />
 }

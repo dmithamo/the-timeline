@@ -1,3 +1,3 @@
-export default function Docs() {
-  return <h1>Work in Progress&reg;</h1>;
+export default function Docs () {
+  return <h1>Work in Progress&reg;</h1>
 }

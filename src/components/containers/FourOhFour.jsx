@@ -1,20 +1,20 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-import { useThemeContext } from '../../contexts/theme';
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { useThemeContext } from '../../contexts/theme'
 
-export default function FourOhFour() {
-  const themeContext = useThemeContext();
+export default function FourOhFour () {
+  const themeContext = useThemeContext()
   const {
-    themeState: { darkModeActive },
-  } = themeContext;
+    themeState: { darkModeActive }
+  } = themeContext
 
   return (
     <Container darkModeActive={darkModeActive}>
       <h1>404</h1>
       <p>Nothing to see here. You&apos;re lost.</p>
-      <NavLink to="/">Find thyself</NavLink>
+      <NavLink to='/'>Find thyself</NavLink>
     </Container>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -38,4 +38,4 @@ const Container = styled.div`
     color: ${(props) => (props.darkModeActive ? '#000' : '#fff')};
     border-radius: 7px;
   }
-`;
+`

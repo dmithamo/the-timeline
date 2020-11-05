@@ -4,42 +4,42 @@ import {
   AUTH_ERROR,
   AUTH_REQUEST,
   LOGOUT,
-  RESET_FORM,
+  RESET_FORM
 } from './actions'
 
 export const initialAuthState = {
   isFetching: false,
   isAuthenticated: false,
   user: { email: null, verificationCode: null },
-  error: false,
+  error: false
 }
 
-function updateState(prevState, newValues) {
+function updateState (prevState, newValues) {
   return {
     ...prevState,
-    ...newValues,
+    ...newValues
   }
 }
 
-export default function authReducer(prevState = initialAuthState, action) {
+export default function authReducer (prevState = initialAuthState, action) {
   const { type } = action
 
   switch (type) {
     case AUTH_REQUEST:
       return updateState(prevState, {
-        isFetching: true,
+        isFetching: true
       })
 
     case AUTHENTICATE_USER_EMAIL:
       return updateState(prevState, {
         isFetching: false,
-        user: action.user,
+        user: action.user
       })
 
     case AUTHENTICATE_USER_PIN:
       return updateState(prevState, {
         isFetching: false,
-        isAuthenticated: true,
+        isAuthenticated: true
       })
 
     case LOGOUT:
@@ -49,7 +49,7 @@ export default function authReducer(prevState = initialAuthState, action) {
     case AUTH_ERROR:
       return updateState(prevState, {
         isFetching: false,
-        error: action.error,
+        error: action.error
       })
 
     default:

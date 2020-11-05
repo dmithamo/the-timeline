@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useThemeContext } from '../../contexts/theme';
-import { useAuthContext } from '../../contexts/auth';
-import DropDownMenuButton from '../common/DropDownMenuButton';
-import User from './User';
+import { useState } from 'react'
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useThemeContext } from '../../contexts/theme'
+import { useAuthContext } from '../../contexts/auth'
+import DropDownMenuButton from '../common/DropDownMenuButton'
+import User from './User'
 
-export default function DropdownMenu() {
-  const themeContext = useThemeContext();
+export default function DropdownMenu () {
+  const themeContext = useThemeContext()
   const {
-    themeState: { darkModeActive },
-  } = themeContext;
+    themeState: { darkModeActive }
+  } = themeContext
 
-  const authContext = useAuthContext();
+  const authContext = useAuthContext()
   const {
-    authState: { isAuthenticated, user },
-  } = authContext;
+    authState: { isAuthenticated, user }
+  } = authContext
 
-  function toggleDarkMode() {
-    themeContext.onDarkModeToggle();
+  function toggleDarkMode () {
+    themeContext.onDarkModeToggle()
   }
 
-  const [showDropdown, setShowDropdown] = useState(false);
-  function toggleDropdown() {
-    setShowDropdown(!showDropdown);
+  const [showDropdown, setShowDropdown] = useState(false)
+  function toggleDropdown () {
+    setShowDropdown(!showDropdown)
   }
 
   // Hide dropdown when esc key is pressed
@@ -31,9 +31,9 @@ export default function DropdownMenu() {
   (() => {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27 || e.which === 27) {
-        showDropdown && toggleDropdown();
+        showDropdown && toggleDropdown()
       }
-    });
+    })
 
     // document.addEventListener('click', (e) => {
     //   if (
@@ -44,31 +44,31 @@ export default function DropdownMenu() {
     //   }
     // });
     // TODO: Fix this!
-  })();
+  })()
 
-  function logout() {
-    authContext.onLogoutUser();
+  function logout () {
+    authContext.onLogoutUser()
   }
 
   return (
     <>
-      <StyledButton id="dropdown-toggle" onClick={toggleDropdown}>
+      <StyledButton id='dropdown-toggle' onClick={toggleDropdown}>
         <FontAwesomeIcon icon={showDropdown ? 'times' : 'bars'} />
       </StyledButton>
 
       {showDropdown && (
-        <Container id="dropdown-menu" darkModeActive={darkModeActive}>
+        <Container id='dropdown-menu' darkModeActive={darkModeActive}>
           <DropDownMenuButton
             onClick={toggleDarkMode}
-            text="Dark Mode"
+            text='Dark Mode'
             icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
           />
 
           {isAuthenticated && (
             <DropDownMenuButton
               onClick={logout}
-              text="Logout"
-              icon="sign-out-alt"
+              text='Logout'
+              icon='sign-out-alt'
             />
           )}
 
@@ -76,7 +76,7 @@ export default function DropdownMenu() {
         </Container>
       )}
     </>
-  );
+  )
 }
 
 const Container = styled.div`
@@ -121,7 +121,7 @@ const Container = styled.div`
   }
 
   transition: all ease 0.7s;
-`;
+`
 
 const StyledButton = styled.button`
   border: none;
@@ -129,4 +129,4 @@ const StyledButton = styled.button`
   background: none;
   cursor: pointer;
   font: inherit;
-`;
+`

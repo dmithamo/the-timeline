@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export default function Subtitle() {
+export default function Subtitle () {
   return <StyledText>Own your growth.</StyledText>
 }
 

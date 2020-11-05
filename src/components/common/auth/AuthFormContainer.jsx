@@ -1,20 +1,20 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { useThemeContext } from '../../../contexts/theme';
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import { useThemeContext } from '../../../contexts/theme'
 
-export default function AuthFormContainer(props) {
-  const themeContext = useThemeContext();
+export default function AuthFormContainer (props) {
+  const themeContext = useThemeContext()
   const {
-    themeState: { darkModeActive },
-  } = themeContext;
+    themeState: { darkModeActive }
+  } = themeContext
 
-  const { children } = props;
-  return <Container darkModeActive={darkModeActive}>{children}</Container>;
+  const { children } = props
+  return <Container darkModeActive={darkModeActive}>{children}</Container>
 }
 
 AuthFormContainer.propTypes = {
-  children: PropTypes.any.isRequired,
-};
+  children: PropTypes.any.isRequired
+}
 
 const Container = styled.div`
   background-color: ${(props) =>
@@ -61,4 +61,4 @@ const Container = styled.div`
       }
     }
   }
-`;
+`

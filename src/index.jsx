@@ -6,7 +6,7 @@ import {
   faTimes,
   faToggleOff,
   faToggleOn,
-  faUserAlt,
+  faUserAlt
 } from '@fortawesome/free-solid-svg-icons'
 import ReactDOM from 'react-dom'
 import App from './App'
@@ -18,6 +18,6 @@ library.add(
   faToggleOff,
   faToggleOn,
   faSignOutAlt,
-  faUserAlt,
+  faUserAlt
 )
 ReactDOM.render(<App />, document.getElementById('root'))

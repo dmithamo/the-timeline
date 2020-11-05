@@ -9,7 +9,7 @@ const SECRET_KEY = process.env.REACT_APP_SECRET_KEY
  * @description Obfuscate data for safe storage in sessionStorage
  * @param {any} data
  */
-export function encrypt(data) {
+export function encrypt (data) {
   try {
     /* The following line is necessary to prevent a certain jwt err */
     data.exp && delete data.exp
@@ -24,7 +24,7 @@ export function encrypt(data) {
  * @description Extract data from token
  * @param {any} token
  */
-export function decrypt(token) {
+export function decrypt (token) {
   try {
     return jwt.verify(token, SECRET_KEY)
   } catch (error) {
