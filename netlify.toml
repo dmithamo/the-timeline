@@ -1,7 +1,7 @@
 [build]
   base = ""
   publish = "build/"
-  command = "yarn build"
+  command = "npm run build"
 
   [build.environment]
     REACT_APP_SECRET_KEY = "it's a secret key 33"

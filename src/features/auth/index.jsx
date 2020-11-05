@@ -1,10 +1,10 @@
 import { Redirect } from 'react-router-dom'
-import EmailVerificationForm from '../common/auth/EmailVerificationForm'
-import VerificationCodeForm from '../common/auth/VerificationCodeForm'
-import api from '../../services'
-import { useAuthContext } from '../../contexts/auth'
+import api from '../../services/http-client'
+import { useAuthContext } from './context'
+import EmailVerificationForm from './EmailVerificationForm'
+import VerificationCodeForm from './VerificationCodeForm'
 
-export default function AuthPage () {
+export default function AuthPage() {
   const authContext = useAuthContext()
   const { authState } = authContext
 
@@ -15,11 +15,11 @@ export default function AuthPage () {
     error
   } = authState
 
-  function handleInvalidInput (err) {
+  function handleInvalidInput(err) {
     authContext.onAuthError({ status: 400, message: err })
   }
 
-  async function onEmailSubmit (params) {
+  async function onEmailSubmit(params) {
     await authContext.onAuthRequest()
 
     try {
@@ -41,7 +41,7 @@ export default function AuthPage () {
     }
   }
 
-  function onVerificationCodeSubmit (code) {
+  function onVerificationCodeSubmit(code) {
     if (Number(code) === verificationCode) {
       authContext.onAuthenticateUserPin()
       return
@@ -53,12 +53,12 @@ export default function AuthPage () {
     })
   }
 
-  function onFormReset () {
+  function onFormReset() {
     authContext.onResetForm()
   }
 
   return isAuthenticated ? (
-    <Redirect to='/the-timeline' />
+    <Redirect to="/the-timeline" />
   ) : (
     <>
       {email ? (

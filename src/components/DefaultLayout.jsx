@@ -1,9 +1,9 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Nav from './Nav'
-import { useThemeContext } from '../../contexts/theme'
+import styled from 'styled-components'
+import Nav from '../features/navbar'
+import { useThemeContext } from '../features/theme'
 
-export default function Layout ({ children }) {
+export default function Layout({ children }) {
   const themeContext = useThemeContext()
   const {
     themeState: { darkModeActive }

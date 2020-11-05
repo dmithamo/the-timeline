@@ -1,25 +1,25 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { useThemeContext } from '../../../contexts/theme'
-import { isValidStringInput } from '../../../utils/validateInput'
+import InlineError from '../../components/InlineError'
+import Loader from '../../components/Loader'
+import { isValidStringInput } from '../../utils/validateInput'
+import { useThemeContext } from '../theme'
 import AuthFormContainer from './AuthFormContainer'
-import InlineError from '../../containers/InlineError'
-import Loader from '../Loader'
 
-export default function VerificationCodeForm (props) {
+export default function VerificationCodeForm(props) {
   const [value, setValue] = useState('')
   const { onSubmit, onInvalidInput } = props
 
-  function handleInputChange (e) {
+  function handleInputChange(e) {
     setValue(e.target.value)
   }
 
-  function handleInvalidInput () {
+  function handleInvalidInput() {
     onInvalidInput(`'${value}' is not a valid verification code.`)
   }
 
-  function handleFormSubmit (e) {
+  function handleFormSubmit(e) {
     e.preventDefault()
     isValidStringInput(value) ? onSubmit(value) : handleInvalidInput()
   }
@@ -47,8 +47,8 @@ export default function VerificationCodeForm (props) {
     <AuthFormContainer darkModeActive={darkModeActive}>
       <h2>Verify Email</h2>
 
-      <form autoComplete='off' onSubmit={handleFormSubmit}>
-        <label htmlFor='email-input'>
+      <form autoComplete="off" onSubmit={handleFormSubmit}>
+        <label htmlFor="email-input">
           {error ? (
             <InlineError error={error} />
           ) : (
@@ -57,9 +57,9 @@ export default function VerificationCodeForm (props) {
 
           <input
             required
-            type='text'
-            placeholder='000000'
-            maxLength='6'
+            type="text"
+            placeholder="000000"
+            maxLength="6"
             value={value}
             onChange={(e) => handleInputChange(e)}
           />
@@ -68,7 +68,7 @@ export default function VerificationCodeForm (props) {
 
       <p>
         <span>Not sent?&nbsp;</span>
-        <NavLink to='/authenticate' onClick={onFormReset}>
+        <NavLink to="/authenticate" onClick={onFormReset}>
           Try again
         </NavLink>
       </p>

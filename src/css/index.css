@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'VictorMono Bold';
+  src: url('./fonts/VictorMono-Bold.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VictorMono Medium';
+  src: url('./fonts/VictorMono-Medium.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VictorMono Regular';
+  src: url('./fonts/VictorMono-Regular.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VictorMono Thin';
+  src: url('./fonts/VictorMono-Thin.otf') format('opentype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'VictorMono Italic';
+  src: url('./fonts/VictorMono-Italic.otf') format('opentype');
+  font-display: swap;
+}
+
+/* ------------------------------------------------------- */
+/* PACE JS LOADER CSS STARTS*/
+.pace {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.pace-inactive {
+  display: none;
+}
+
+.pace .pace-progress {
+  background: #4ef0e0;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 1px;
+}
+
+/* PACE JS LOADER CSS ENDS */
+/* ------------------------------------------------------- */
+
+:root {
+  /* colors */
+  --black: #24272a;
+  --trueBlack: #000;
+  --linkedInBlue: #0e76a8;
+  --gmailRed: #db4a39;
+  --locationYellow: #ffff00;
+  --white: #fff;
+  --offWhite: rgb(235, 235, 235);
+  --grey: rgb(226, 226, 226);
+  --red: #ff0000;
+
+  /* fonts */
+  --primaryFontBold: 'VictorMono Bold', sans-serif;
+  --primaryFontMedium: 'VictorMono Medium', sans-serif;
+  --primaryFont: 'VictorMono Regular', sans-serif;
+  --primaryFontThin: 'VictorMono Thin', sans-serif;
+  --primaryFontItalic: 'VictorMono Italic', sans-serif;
+
+  /* shadows */
+  --modalShadow: 0 0 2px 2px #1d1d1d75;
+}
+
+body {
+  font-family: var(--primaryFont);
+  margin: 0;
+  width: 100%;
+  font-size: 12px;
+}
+
+* {
+  box-sizing: border-box !important;
+  font-family: var(--primaryFont);
+}
+
+.animate-transition-1 {
+  transition: all ease-in-out 0.15s !important;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--primaryFontThin);
+  font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div {
+  margin: 0;
+}
+
+.gradient-bg {
+  background: #abbaab; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffffff,
+    #abbaab
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffffff,
+    #abbaab
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

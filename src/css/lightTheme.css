@@ -1,0 +1,11 @@
+:root {
+  --lightThemeTextColor: rgb(10, 10, 10);
+  --lightThemeSecondaryTextColor: #3f3f3f80;
+  --lightThemeBG: #dfdfdf;
+  --lightThemeDarker: #c5c5c5;
+  --lightThemeAccentColor: #076e8d;
+}
+
+body {
+  background-color: var(--lightThemeBG) !important;
+}

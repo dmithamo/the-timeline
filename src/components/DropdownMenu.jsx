@@ -1,12 +1,15 @@
-import { useState } from 'react'
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useThemeContext } from '../../contexts/theme'
-import { useAuthContext } from '../../contexts/auth'
-import DropDownMenuButton from '../common/DropDownMenuButton'
-import User from './User'
+import { useRef, useState } from 'react'
+import styled from 'styled-components'
+import { useAuthContext } from '../features/auth/context'
+import { useThemeContext } from '../features/theme'
+import useClickOutside, {
+  useEcapeKeyPress
+} from '../utils/hooks/useClickOutside'
+import DropDownMenuItem from './DropDownMenuButton'
+import User from './UserAvatar'
 
-export default function DropdownMenu () {
+export default function DropdownMenu() {
   const themeContext = useThemeContext()
   const {
     themeState: { darkModeActive }
@@ -17,65 +20,49 @@ export default function DropdownMenu () {
     authState: { isAuthenticated, user }
   } = authContext
 
-  function toggleDarkMode () {
+  function toggleDarkMode() {
     themeContext.onDarkModeToggle()
   }
 
   const [showDropdown, setShowDropdown] = useState(false)
-  function toggleDropdown () {
+  function toggleDropdown() {
     setShowDropdown(!showDropdown)
   }
 
-  // Hide dropdown when esc key is pressed
-  // or when click happens outside dropdown
-  (() => {
-    document.addEventListener('keyup', (e) => {
-      if (e.keyCode === 27 || e.which === 27) {
-        showDropdown && toggleDropdown()
-      }
-    })
+  const ref = useRef()
+  useClickOutside(ref, () => setShowDropdown(false))
+  useEcapeKeyPress(() => setShowDropdown(false))
 
-    // document.addEventListener('click', (e) => {
-    //   if (
-    //     e.target.id !== 'dropdown-toggle' ||
-    //     e.target.id !== 'dropdown-menu'
-    //   ) {
-    //     showDropdown && setShowDropdown(false);
-    //   }
-    // });
-    // TODO: Fix this!
-  })()
-
-  function logout () {
+  function logout() {
     authContext.onLogoutUser()
   }
 
   return (
-    <>
-      <StyledButton id='dropdown-toggle' onClick={toggleDropdown}>
+    <div ref={ref}>
+      <StyledShowDropdownToggle id="dropdown-toggle" onClick={toggleDropdown}>
         <FontAwesomeIcon icon={showDropdown ? 'times' : 'bars'} />
-      </StyledButton>
+      </StyledShowDropdownToggle>
 
       {showDropdown && (
-        <Container id='dropdown-menu' darkModeActive={darkModeActive}>
-          <DropDownMenuButton
+        <Container id="dropdown-menu" darkModeActive={darkModeActive}>
+          <DropDownMenuItem
             onClick={toggleDarkMode}
-            text='Dark Mode'
+            text="Dark Mode"
             icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
           />
 
           {isAuthenticated && (
-            <DropDownMenuButton
+            <DropDownMenuItem
               onClick={logout}
-              text='Logout'
-              icon='sign-out-alt'
+              text="Logout"
+              icon="sign-out-alt"
             />
           )}
 
           {isAuthenticated && <User user={user} />}
         </Container>
       )}
-    </>
+    </div>
   )
 }
 
@@ -123,7 +110,7 @@ const Container = styled.div`
   transition: all ease 0.7s;
 `
 
-const StyledButton = styled.button`
+const StyledShowDropdownToggle = styled.button`
   border: none;
   outline: none;
   background: none;

@@ -1,8 +1,15 @@
-import Routes from './components/containers/Routes'
-import AuthContextProvider from './contexts/auth'
-import ThemeContextProvider from './contexts/theme'
+import { useEffect } from 'react'
+import './css/index.css'
+import AuthContextProvider from './features/auth/context'
+import Routes from './features/routes'
+import ThemeContextProvider from './features/theme'
 
-export default function App () {
+export default function App() {
+  useEffect(() => {
+    require('./css/pace')
+    return () => {}
+  }, [])
+
   return (
     <AuthContextProvider>
       <ThemeContextProvider>

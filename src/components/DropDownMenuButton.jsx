@@ -2,13 +2,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-export default function DropdownMenuButton (props) {
+export default function DropdownMenuItem(props) {
   const { onClick, text, icon } = props
 
   return (
-    <Container type='button' onClick={onClick}>
+    <Container type="button" onClick={onClick}>
       <span>{text}</span>
-      <span className='icon'>
+      <span className="icon">
         <FontAwesomeIcon icon={icon} />
       </span>
     </Container>
@@ -38,7 +38,7 @@ const Container = styled.button`
   }
 `
 
-DropdownMenuButton.propTypes = {
+DropdownMenuItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired
