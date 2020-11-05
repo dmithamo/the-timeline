@@ -1,13 +1,13 @@
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import DropdownMenu from './DropdownMenu'
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import DropdownMenu from '../../components/DropdownMenu'
 
-export default function Nav () {
+export default function Nav() {
   return (
     <Container>
-      <NavLink to='/' activeClassName='active-link'>
-        <FontAwesomeIcon icon='home' />
+      <NavLink to="/" activeClassName="active-link">
+        <FontAwesomeIcon icon="home" />
       </NavLink>
 
       <DropdownMenu />

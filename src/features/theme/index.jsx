@@ -1,4 +1,10 @@
-import { createContext, useContext, useReducer, useEffect, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer
+} from 'react'
 import toggleDarkModeAction from './actions'
 import themeReducer, { initialThemeState } from './reducer'
 
@@ -9,7 +15,7 @@ export const useThemeContext = () => useContext(ThemeContext)
  * @description Create a wrapper to avail theme state to all children
  * @param {obj} props - Props to pass on to the wrapper ie, <Provider />
  */
-export default function ThemeContextProvider (props) {
+export default function ThemeContextProvider(props) {
   const cachedThemeState = JSON.parse(localStorage.getItem('theme'))
   const [themeState, dispatch] = useReducer(
     themeReducer,
@@ -24,13 +30,11 @@ export default function ThemeContextProvider (props) {
   /**
    * @description Dispatch action to toggle dark mode on/off
    */
-  function onDarkModeToggle () {
+  function onDarkModeToggle() {
     dispatch(toggleDarkModeAction())
   }
 
-  const value = useMemo(() => ({ themeState, onDarkModeToggle }), [
-    themeState
-  ])
+  const value = useMemo(() => ({ themeState, onDarkModeToggle }), [themeState])
 
   return <ThemeContext.Provider value={value} {...props} />
 }

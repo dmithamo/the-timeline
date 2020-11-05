@@ -1,12 +1,12 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useThemeContext } from '../../contexts/theme'
-import { useAuthContext } from '../../contexts/auth'
-import DropDownMenuButton from '../common/DropDownMenuButton'
-import User from './User'
+import { useAuthContext } from '../features/auth/context'
+import { useThemeContext } from '../features/theme'
+import DropDownMenuButton from './DropDownMenuButton'
+import User from './UserAvatar'
 
-export default function DropdownMenu () {
+export default function DropdownMenu() {
   const themeContext = useThemeContext()
   const {
     themeState: { darkModeActive }
@@ -17,18 +17,18 @@ export default function DropdownMenu () {
     authState: { isAuthenticated, user }
   } = authContext
 
-  function toggleDarkMode () {
+  function toggleDarkMode() {
     themeContext.onDarkModeToggle()
   }
 
   const [showDropdown, setShowDropdown] = useState(false)
-  function toggleDropdown () {
+  function toggleDropdown() {
     setShowDropdown(!showDropdown)
   }
 
   // Hide dropdown when esc key is pressed
   // or when click happens outside dropdown
-  (() => {
+  ;(() => {
     document.addEventListener('keyup', (e) => {
       if (e.keyCode === 27 || e.which === 27) {
         showDropdown && toggleDropdown()
@@ -46,29 +46,29 @@ export default function DropdownMenu () {
     // TODO: Fix this!
   })()
 
-  function logout () {
+  function logout() {
     authContext.onLogoutUser()
   }
 
   return (
     <>
-      <StyledButton id='dropdown-toggle' onClick={toggleDropdown}>
+      <StyledButton id="dropdown-toggle" onClick={toggleDropdown}>
         <FontAwesomeIcon icon={showDropdown ? 'times' : 'bars'} />
       </StyledButton>
 
       {showDropdown && (
-        <Container id='dropdown-menu' darkModeActive={darkModeActive}>
+        <Container id="dropdown-menu" darkModeActive={darkModeActive}>
           <DropDownMenuButton
             onClick={toggleDarkMode}
-            text='Dark Mode'
+            text="Dark Mode"
             icon={darkModeActive ? 'toggle-on' : 'toggle-off'}
           />
 
           {isAuthenticated && (
             <DropDownMenuButton
               onClick={logout}
-              text='Logout'
-              icon='sign-out-alt'
+              text="Logout"
+              icon="sign-out-alt"
             />
           )}
 

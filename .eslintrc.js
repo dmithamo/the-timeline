@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'multiline-ternary': 'off',
-    'default-param-last': 'off'
+    'default-param-last': 'off',
+    'space-before-function-paren': 'off'
   }
 }

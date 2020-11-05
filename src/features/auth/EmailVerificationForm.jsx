@@ -1,25 +1,25 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { useThemeContext } from '../../../contexts/theme'
-import { isValidEmailInput } from '../../../utils/validateInput'
-import InlineError from '../../containers/InlineError'
-import Loader from '../Loader'
+import InlineError from '../../components/InlineError'
+import Loader from '../../components/Loader'
+import { isValidEmailInput } from '../../utils/validateInput'
+import { useThemeContext } from '../theme'
 import AuthFormContainer from './AuthFormContainer'
 
-export default function EmailVerificationForm (props) {
+export default function EmailVerificationForm(props) {
   const [value, setValue] = useState('')
   const { onSubmit, onInvalidInput } = props
 
-  function handleInputChange (e) {
+  function handleInputChange(e) {
     setValue(e.target.value)
   }
 
-  function handleInvalidInput () {
+  function handleInvalidInput() {
     onInvalidInput(`'${value}' is not a valid email address.`)
   }
 
-  function handleFormSubmit (e) {
+  function handleFormSubmit(e) {
     e.preventDefault()
     isValidEmailInput(value) ? onSubmit({ email: value }) : handleInvalidInput()
   }

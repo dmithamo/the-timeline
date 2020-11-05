@@ -1,11 +1,11 @@
-import styled from 'styled-components'
 import { NavLink, Redirect } from 'react-router-dom'
-import Logo from '../common/Logo'
-import Subtitle from '../common/Subtitle'
-import { useThemeContext } from '../../contexts/theme'
-import { useAuthContext } from '../../contexts/auth'
+import styled from 'styled-components'
+import Logo from '../../components/Logo'
+import Subtitle from '../../components/Subtitle'
+import { useAuthContext } from '../auth/context'
+import { useThemeContext } from '../theme'
 
-export default function Homepage () {
+export default function Homepage() {
   const themeContext = useThemeContext()
   const {
     themeState: { darkModeActive }
@@ -17,19 +17,19 @@ export default function Homepage () {
   } = authContext
 
   return isAuthenticated ? (
-    <Redirect to='/the-timeline' />
+    <Redirect to="/the-timeline" />
   ) : (
     <>
       <Logo />
       <Subtitle />
       <AuthButtons darkModeActive={darkModeActive}>
-        <NavLink to='/the-freaking-docs' activeClassName='active-link'>
+        <NavLink to="/the-freaking-docs" activeClassName="active-link">
           Find out more
         </NavLink>
         <NavLink
-          id='authenticate'
-          to='/authenticate'
-          activeClassName='active-link'
+          id="authenticate"
+          to="/authenticate"
+          activeClassName="active-link"
         >
           Get started. It&apos;s free
         </NavLink>

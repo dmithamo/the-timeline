@@ -1,8 +1,8 @@
-import Routes from './components/containers/Routes'
-import AuthContextProvider from './contexts/auth'
-import ThemeContextProvider from './contexts/theme'
+import AuthContextProvider from './features/auth/context'
+import Routes from './features/routes'
+import ThemeContextProvider from './features/theme'
 
-export default function App () {
+export default function App() {
   return (
     <AuthContextProvider>
       <ThemeContextProvider>

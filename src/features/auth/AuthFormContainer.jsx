@@ -1,8 +1,8 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useThemeContext } from '../../../contexts/theme'
+import styled from 'styled-components'
+import { useThemeContext } from '../theme'
 
-export default function AuthFormContainer (props) {
+export default function AuthFormContainer(props) {
   const themeContext = useThemeContext()
   const {
     themeState: { darkModeActive }
