@@ -28,8 +28,7 @@ const MainContainer = styled.section`
   background-color: ${(props) =>
     props.darkModeActive ? '#112222' : '#ffffff40'};
 
-  a,
-  button {
+  a {
     color: ${(props) => (props.darkModeActive ? '#c77905' : '#121212')};
     filter: opacity(0.9);
 

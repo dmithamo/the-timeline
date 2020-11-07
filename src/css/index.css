@@ -77,6 +77,18 @@
 
   /* shadows */
   --modalShadow: 0 0 2px 2px #1d1d1d75;
+
+  /* THEMES!!! */
+
+  /* LIGHT */
+  --lightThemeTextColor: rgb(41, 41, 41);
+  --lightThemeBG: #ffffff;
+  --lightThemeAccentColor: #076e8d;
+
+  /* DARK */
+  --darkThemeTextColor: rgb(255, 255, 255);
+  --darkThemeBG: #000000;
+  --darkThemeAccentColor: #abbaab;
 }
 
 body {

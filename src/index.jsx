@@ -1,4 +1,5 @@
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab, faGithubAlt } from '@fortawesome/free-brands-svg-icons'
 import {
   faBars,
   faHome,
@@ -18,6 +19,8 @@ library.add(
   faToggleOff,
   faToggleOn,
   faSignOutAlt,
-  faUserAlt
+  faUserAlt,
+  fab,
+  faGithubAlt
 )
 ReactDOM.render(<App />, document.getElementById('root'))

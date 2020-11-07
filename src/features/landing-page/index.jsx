@@ -1,5 +1,6 @@
 import { NavLink, Redirect } from 'react-router-dom'
 import styled from 'styled-components'
+import { LoginButton } from '../../components/AuthButtons'
 import Logo from '../../components/Logo'
 import Subtitle from '../../components/Subtitle'
 import { useAuthContext } from '../auth/context'
@@ -22,23 +23,17 @@ export default function Homepage() {
     <>
       <Logo />
       <Subtitle />
-      <AuthButtons darkModeActive={darkModeActive}>
+      <StyledLinksContainer darkModeActive={darkModeActive}>
         <NavLink to="/the-freaking-docs" activeClassName="active-link">
           Find out more
         </NavLink>
-        <NavLink
-          id="authenticate"
-          to="/authenticate"
-          activeClassName="active-link"
-        >
-          Get started. It&apos;s free
-        </NavLink>
-      </AuthButtons>
+        <LoginButton />
+      </StyledLinksContainer>
     </>
   )
 }
 
-const AuthButtons = styled.div`
+const StyledLinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
