@@ -1,5 +1,4 @@
 import DefaultLayout from '../../components/DefaultLayout'
-import AuthPage from '../auth'
 import Docs from '../docs'
 import FourOhFour from '../four-oh-four'
 import Homepage from '../landing-page'
@@ -28,14 +27,6 @@ const allTheRoutes = [
     path: '/the-timeline',
     component: TheTimeline,
     needsAuth: true,
-    exact: true,
-    layout: DefaultLayout
-  },
-  {
-    name: 'auth',
-    path: '/authenticate',
-    component: AuthPage,
-    needsAuth: false,
     exact: true,
     layout: DefaultLayout
   },

@@ -1,30 +1,30 @@
 @font-face {
-  font-family: 'VictorMono Bold';
-  src: url('./fonts/VictorMono-Bold.otf') format('opentype');
+  font-family: 'JetBrainsMono Bold';
+  src: url('./fonts/JetBrainsMono-Bold.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'VictorMono Medium';
-  src: url('./fonts/VictorMono-Medium.otf') format('opentype');
+  font-family: 'JetBrainsMono Medium';
+  src: url('./fonts/JetBrainsMono-Medium.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'VictorMono Regular';
-  src: url('./fonts/VictorMono-Regular.otf') format('opentype');
+  font-family: 'JetBrainsMono Regular';
+  src: url('./fonts/JetBrainsMono-Regular.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'VictorMono Thin';
-  src: url('./fonts/VictorMono-Thin.otf') format('opentype');
+  font-family: 'JetBrainsMono Light';
+  src: url('./fonts/JetBrainsMono-Light.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'VictorMono Italic';
-  src: url('./fonts/VictorMono-Italic.otf') format('opentype');
+  font-family: 'JetBrainsMono Italic';
+  src: url('./fonts/JetBrainsMono-Italic.ttf') format('truetype');
   font-display: swap;
 }
 
@@ -69,18 +69,30 @@
   --red: #ff0000;
 
   /* fonts */
-  --primaryFontBold: 'VictorMono Bold', sans-serif;
-  --primaryFontMedium: 'VictorMono Medium', sans-serif;
-  --primaryFont: 'VictorMono Regular', sans-serif;
-  --primaryFontThin: 'VictorMono Thin', sans-serif;
-  --primaryFontItalic: 'VictorMono Italic', sans-serif;
+  --primaryFontBold: 'JetBrainsMono Bold', sans-serif;
+  --primaryFontMedium: 'JetBrainsMono Medium', sans-serif;
+  --primaryFont: 'JetBrainsMono Regular', sans-serif;
+  --primaryFontLight: 'JetBrainsMono Light', sans-serif;
+  --primaryFontItalic: 'JetBrainsMono Italic', sans-serif;
 
   /* shadows */
-  --modalShadow: 0 0 2px 2px #1d1d1d75;
+  --modalShadow: 0 0 2px 2px #92929275;
+
+  /* THEMES!!! */
+
+  /* LIGHT */
+  --lightThemeTextColor: rgb(41, 41, 41);
+  --lightThemeBG: #ffffff;
+  --lightThemeAccentColor: #076e8d;
+
+  /* DARK */
+  --darkThemeTextColor: rgb(255, 255, 255);
+  --darkThemeBG: #000000;
+  --darkThemeAccentColor: #abbaab;
 }
 
 body {
-  font-family: var(--primaryFont);
+  font-family: var(--primaryFontLight);
   margin: 0;
   width: 100%;
   font-size: 12px;
@@ -106,7 +118,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--primaryFontThin);
+  font-family: var(--primaryFontLight);
   font-weight: bold;
 }
 
