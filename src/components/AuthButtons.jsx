@@ -9,16 +9,42 @@ export function LoginButton() {
   const theme = themeCtxt.themeState
 
   return (
+    <PrimaryButton theme={theme} onClick={() => loginWithRedirect()}>
+      <FontAwesomeIcon icon={['fab', 'github']} />
+      <span style={{ marginLeft: '1em' }}>Sign in with GitHub</span>
+    </PrimaryButton>
+  )
+}
+
+export function SignUpButton() {
+  const { loginWithRedirect } = useAuth0()
+  const themeCtxt = useThemeContext()
+  const theme = themeCtxt.themeState
+
+  return (
     <PrimaryButton
       theme={theme}
-      onClick={() => loginWithRedirect({ display: 'touch' })}
+      onClick={() => loginWithRedirect({ screen_hint: 'signup' })}
     >
       <FontAwesomeIcon icon={['fab', 'github']} />
-      <span style={{ marginLeft: '1em' }}>Sign up with GitHub</span>
+      <span style={{ marginLeft: '1em' }}>Join with GitHub</span>
     </PrimaryButton>
   )
 }
 
 export function LogoutButton() {
-  return <SecondaryButton>Logout</SecondaryButton>
+  const { logout } = useAuth0()
+  return (
+    <SecondaryButton
+      onClick={() => logout({ returnTo: window.location.origin })}
+    >
+      Logout
+    </SecondaryButton>
+  )
+}
+
+export default function AuthButtons() {
+  const { isAuthenticated } = useAuth0()
+
+  return isAuthenticated ? <LogoutButton /> : <LoginButton />
 }

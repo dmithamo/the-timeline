@@ -4,18 +4,21 @@
 import styled from 'styled-components'
 
 export const PrimaryButton = styled.button`
+  width: 100%;
   outline: none;
   border: none;
-  padding: 1em 0.75em;
+  padding: 0.85em 1.5em;
   border-radius: 5px;
   font: inherit;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  opacity: 0.85;
 
   svg {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 
   background-color: ${(props) =>
@@ -25,8 +28,10 @@ export const PrimaryButton = styled.button`
     props.theme.darkModeActive ? 'var(--darkThemeBG)' : 'var(--lightThemeBG)'};
 
   :hover {
-    filter: brightness(105%);
+    opacity: 1;
   }
+
+  transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
 `
 
 export const SecondaryButton = styled(PrimaryButton)`
@@ -41,11 +46,15 @@ export const DangerButton = styled(PrimaryButton)`
 
 export const OutlineButton = styled(PrimaryButton)`
   border: ${(props) =>
-    `1 px solid ${
-      props.theme.darkModeActive
-        ? 'var(--lightThemeTextColor)'
-        : 'var(--darkThemeTextColor)'
-    }`};
+    props.theme.darkModeActive
+      ? '1px solid var(--lightThemeBG)'
+      : '1px solid var(--darkThemeBG)'};
+
+  color: ${(props) =>
+    props.theme.darkModeActive
+      ? 'var(--darkThemeTextColor)'
+      : 'var(--lightThemeTextColor)'};
+  background: none;
 `
 
 export const LinkButton = styled(PrimaryButton)`

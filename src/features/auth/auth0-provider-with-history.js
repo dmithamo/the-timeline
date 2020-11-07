@@ -9,7 +9,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const history = useHistory()
 
   const onRedirectCallback = (appState) => {
-    history.push(appState?.returnTo || window.location.pathname)
+    history.push(appState?.returnTo || window.location.origin)
   }
 
   return (
@@ -17,7 +17,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       domain={domain}
       clientId={clientId}
       onRedirectCallback={onRedirectCallback}
-      redirectUri={window.location.origin}
+      redirectUri={window.location.pathname}
     >
       {children}
     </Auth0Provider>
